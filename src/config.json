@@ -1,0 +1,46 @@
+{
+  "vk": {
+    "messageLimit": 4096,
+    "defaultButtons": {
+      "amountLimit": 40,
+      "textLimit": 0,
+      "linksSupport": true
+    },
+    "inlineButtons": {
+      "amountLimit": 10,
+      "textLimit": 0,
+      "linksSupport": true
+    }
+  },
+  "whatsapp": {
+    "messageLimit": 1000,
+    "defaultButtons": {
+      "amountLimit": 10,
+      "textLimit": 20,
+      "linksSupport": false
+    },
+    "inlineButtons": {
+      "amountLimit": 3,
+      "textLimit": 20,
+      "linksSupport": 1
+    }
+  },
+  "tg": {
+    "messageLimit": 4096,
+    "defaultButtons": {
+      "amountLimit": 0,
+      "textLimit": 0,
+      "linksSupport": false
+    },
+    "inlineButtons": {
+      "amountLimit": 10,
+      "textLimit": 64,
+      "linksSupport": true
+    }
+  },
+  "sms": {
+    "messageLimit": 0,
+    "defaultButtons": false,
+    "inlineButtons": false
+  }
+}

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import ChannelCard from "./components/ChannelCard.vue";
 
 const items = [
@@ -19,6 +20,12 @@ const items = [
     icon: "/sms.svg",
   },
 ];
+
+const activeChannels = ref<string[]>([]);
+
+const setItem = (title: string) => {
+  activeChannels.value.push(title);
+};
 </script>
 
 <template>
@@ -29,7 +36,12 @@ const items = [
     >
       <h2 class="text-2xl">Выберите каналы</h2>
       <div class="flex justify-center gap-2 py-4">
-        <ChannelCard v-for="item in items" :key="item.title" v-bind="item" />
+        <ChannelCard
+          v-for="item in items"
+          :key="item.title"
+          v-bind="item"
+          :setItem="setItem"
+        />
       </div>
     </div>
   </div>

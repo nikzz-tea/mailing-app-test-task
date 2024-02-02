@@ -1,13 +1,27 @@
 <script setup lang="ts">
-defineProps<{
+import { ref } from "vue";
+
+const { setItem, title } = defineProps<{
   title: string;
   icon: string;
+  setItem: (title: string) => void;
 }>();
+
+const isActive = ref(false);
+
+const handleClick = () => {
+  setItem(title);
+  isActive.value = !isActive.value;
+};
 </script>
 
 <template>
   <div
-    class="flex w-40 cursor-pointer items-center justify-center gap-2 rounded-lg border-4 border-lime-200 p-3 duration-200 hover:-translate-y-1 hover:bg-slate-100"
+    @click="handleClick"
+    :class="[
+      isActive ? '-translate-y-1 bg-slate-100' : '',
+      'flex w-40 cursor-pointer items-center justify-center gap-2 rounded-lg border-4 border-lime-200 p-3 duration-200 hover:-translate-y-1 hover:bg-slate-100',
+    ]"
   >
     <img class="h-10 w-10" :src="icon" :alt="title" />
     <span>{{ title }}</span>

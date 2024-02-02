@@ -10,7 +10,7 @@ const { setItem, title } = defineProps<{
 const isActive = ref(false);
 
 const handleClick = () => {
-  setItem(title);
+  setItem(title.toLowerCase());
   isActive.value = !isActive.value;
 };
 </script>

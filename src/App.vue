@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import data from "./config.json";
 import ChannelCard from "./components/ChannelCard.vue";
+import MessageField from "./components/MessageField.vue";
 
 const items = [
   {
@@ -24,7 +26,9 @@ const items = [
 const activeChannels = ref<string[]>([]);
 
 const setItem = (title: string) => {
-  activeChannels.value.push(title);
+  if (!activeChannels.value.includes(title))
+    return activeChannels.value.push(title);
+  activeChannels.value = activeChannels.value.filter((item) => item !== title);
 };
 </script>
 
@@ -41,6 +45,15 @@ const setItem = (title: string) => {
           :key="item.title"
           v-bind="item"
           :setItem="setItem"
+        />
+      </div>
+      <h2 class="text-2xl">Заполните сообщения</h2>
+      <div v-auto-animate class="flex flex-col gap-9 py-4">
+        <MessageField
+          v-for="(item, i) in activeChannels"
+          :index="i + 1"
+          :title="data[item].name"
+          :maxLength="data[item].messageLimit"
         />
       </div>
     </div>

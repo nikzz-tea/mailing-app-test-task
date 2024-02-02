@@ -1,5 +1,6 @@
 {
   "vk": {
+    "name": "VK",
     "messageLimit": 4096,
     "defaultButtons": {
       "amountLimit": 40,
@@ -13,6 +14,7 @@
     }
   },
   "whatsapp": {
+    "name": "WhatsApp",
     "messageLimit": 1000,
     "defaultButtons": {
       "amountLimit": 10,
@@ -25,7 +27,8 @@
       "linksSupport": 1
     }
   },
-  "tg": {
+  "telegram": {
+    "name": "Telegram",
     "messageLimit": 4096,
     "defaultButtons": {
       "amountLimit": 0,
@@ -39,6 +42,7 @@
     }
   },
   "sms": {
+    "name": "SMS",
     "messageLimit": 0,
     "defaultButtons": false,
     "inlineButtons": false

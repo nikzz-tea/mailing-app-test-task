@@ -7,14 +7,14 @@ export interface ChannelConfig {
         textLimit: number;
         linksSupport: boolean;
       }
-    | boolean;
+    | false;
   inlineButtons:
     | {
         amountLimit: number;
         textLimit: number;
         linksSupport: boolean | number;
       }
-    | boolean;
+    | false;
 }
 
 interface Config {

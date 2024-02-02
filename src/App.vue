@@ -37,7 +37,7 @@ const setItem = (title: string) => {
     v-auto-animate
     class="mx-auto mt-16 min-h-[854px] w-[1200px] rounded-t-3xl bg-white p-8 shadow-lg"
   >
-    <h2 class="text-2xl">Выберите каналы</h2>
+    <h2 class="text-3xl font-semibold">Выберите каналы</h2>
     <div class="flex justify-center gap-2 py-4">
       <ChannelCard
         v-for="item in items"
@@ -46,7 +46,7 @@ const setItem = (title: string) => {
         :setItem="setItem"
       />
     </div>
-    <h2 class="text-2xl">Заполните сообщения</h2>
+    <h2 class="text-3xl font-semibold">Заполните сообщения</h2>
     <div v-auto-animate class="flex flex-col gap-9 py-4">
       <MessageField
         v-for="(item, i) in activeChannels"

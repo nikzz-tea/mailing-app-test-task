@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { ChannelConfig } from "../config";
+import InputList from "./InputList.vue";
 
 const { channelObject } = defineProps<{
   index: number;
   channelObject: ChannelConfig;
 }>();
-
-const { messageLimit, name } = channelObject;
 
 const isOpened = ref(false);
 
@@ -18,12 +17,15 @@ const handleClick = () => {
 
 <template>
   <div>
-    <h3 class="text-center text-xl">{{ index }}. {{ name }}</h3>
+    <h3 class="pb-2 text-center text-2xl">
+      {{ index }}. {{ channelObject.name }}
+    </h3>
     <textarea
-      :maxlength="messageLimit"
+      :maxlength="channelObject.messageLimit"
       class="w-full rounded-md border border-slate-500 p-3 text-base duration-200 focus:border-lime-700"
     ></textarea>
     <div
+      v-if="channelObject.defaultButtons"
       @click="handleClick"
       class="flex cursor-pointer items-center justify-center gap-1"
     >
@@ -32,7 +34,7 @@ const handleClick = () => {
         src="../assets/chevron.svg"
         alt=""
       />
-      <span>Настроить кнопки</span>
+      <span class="font-medium">Настроить кнопки</span>
     </div>
     <div
       :class="[
@@ -40,7 +42,10 @@ const handleClick = () => {
         'grid duration-200',
       ]"
     >
-      <div class="min-h-0 overflow-hidden">aopsdfigaspogiasgp[adigp]</div>
+      <div class="flex min-h-0 justify-center gap-6 overflow-hidden pt-3">
+        <InputList type="Стандартные" :channelObject="channelObject" />
+        <InputList type="inline" :channelObject="channelObject" />
+      </div>
     </div>
   </div>
 </template>

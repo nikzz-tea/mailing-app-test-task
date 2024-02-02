@@ -6,6 +6,10 @@
   @apply font-sans;
 }
 
+body {
+  @apply overflow-x-hidden bg-lime-200;
+}
+
 input:focus,
 textarea:focus,
 select:focus {

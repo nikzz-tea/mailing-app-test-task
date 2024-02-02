@@ -1,6 +1,7 @@
 {
   "vk": {
     "name": "VK",
+    "icon": "/vk.svg",
     "messageLimit": 4096,
     "defaultButtons": {
       "amountLimit": 40,
@@ -15,6 +16,7 @@
   },
   "whatsapp": {
     "name": "WhatsApp",
+    "icon": "/whatsapp.svg",
     "messageLimit": 1000,
     "defaultButtons": {
       "amountLimit": 10,
@@ -29,6 +31,7 @@
   },
   "telegram": {
     "name": "Telegram",
+    "icon": "/tg.svg",
     "messageLimit": 4096,
     "defaultButtons": {
       "amountLimit": 0,
@@ -43,6 +46,7 @@
   },
   "sms": {
     "name": "SMS",
+    "icon": "/sms.svg",
     "messageLimit": 0,
     "defaultButtons": false,
     "inlineButtons": false

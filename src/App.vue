@@ -4,25 +4,6 @@ import ChannelCard from "./components/ChannelCard.vue";
 import MessageField from "./components/MessageField.vue";
 import config from "./config";
 
-const items = [
-  {
-    title: "VK",
-    icon: "/vk.svg",
-  },
-  {
-    title: "Telegram",
-    icon: "/tg.svg",
-  },
-  {
-    title: "WhatsApp",
-    icon: "/whatsapp.svg",
-  },
-  {
-    title: "SMS",
-    icon: "/sms.svg",
-  },
-];
-
 const activeChannels = ref<string[]>([]);
 
 const setItem = (title: string) => {
@@ -40,9 +21,10 @@ const setItem = (title: string) => {
     <h2 class="text-3xl font-semibold">Выберите каналы</h2>
     <div class="flex justify-center gap-2 py-4">
       <ChannelCard
-        v-for="item in items"
-        :key="item.title"
-        v-bind="item"
+        v-for="item in config"
+        :key="item.name"
+        :title="item.name"
+        :icon="item.icon"
         :setItem="setItem"
       />
     </div>

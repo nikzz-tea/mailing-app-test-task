@@ -1,5 +1,6 @@
 export interface ChannelConfig {
   name: string;
+  icon: string;
   messageLimit: number;
   defaultButtons:
     | {

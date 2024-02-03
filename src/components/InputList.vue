@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { inject, ref } from "vue";
 import Input from "./Input.vue";
 import { ChannelConfig } from "../config";
 
@@ -9,6 +9,19 @@ const { channelObject, type } = defineProps<{
 }>();
 
 const amount = ref<{ inputType: null | string }[]>([]);
+
+const finalResult = inject("finalResult") as any[];
+
+const updateResult = (
+  isInline: boolean,
+  obj: { isLink: boolean; text: string },
+) => {
+  const object = finalResult.find(
+    (item) => item.channel === channelObject.name.toLowerCase(),
+  );
+  if (isInline) return object.inlineButtons.push(obj);
+  return object.defaultButtons.push(obj);
+};
 
 const handleAdd = () => {
   if (!channelObject.defaultButtons) return;
@@ -73,6 +86,8 @@ const setLimit = (inputType: string | null) => {
         :key="i"
         :type="item.inputType"
         :maxLength="setLimit(item.inputType)"
+        :isInline="type === 'inline'"
+        :updateResult="updateResult"
       />
     </div>
     <div class="pt-3">

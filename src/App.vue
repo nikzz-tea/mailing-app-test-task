@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { provide, ref } from "vue";
 import ChannelCard from "./components/ChannelCard.vue";
 import MessageField from "./components/MessageField.vue";
 import config from "./config";
@@ -7,10 +7,31 @@ import config from "./config";
 const activeChannels = ref<string[]>([]);
 
 const setItem = (title: string) => {
-  if (!activeChannels.value.includes(title))
+  if (!activeChannels.value.includes(title)) {
+    finalResult.value.push({
+      channel: title,
+      message: "",
+      defaultButtons: [],
+      inlineButtons: [],
+    });
     return activeChannels.value.push(title);
+  }
+  finalResult.value = finalResult.value.filter(
+    (item) => item.channel !== title,
+  );
   activeChannels.value = activeChannels.value.filter((item) => item !== title);
 };
+
+const finalResult = ref<any[]>([]);
+
+const handleSave = () => {
+  console.log(finalResult.value);
+  alert(
+    `Сообщения "отправлены"!\nИнформация:\n${JSON.stringify(finalResult.value)}`,
+  );
+};
+
+provide("finalResult", finalResult.value);
 </script>
 
 <template>
@@ -35,6 +56,14 @@ const setItem = (title: string) => {
         :index="i + 1"
         :channelObject="config[item]"
       />
+    </div>
+    <div class="flex justify-center">
+      <button
+        @click="handleSave"
+        class="rounded-md border-4 border-lime-200 px-4 py-2 text-2xl duration-200 hover:bg-lime-200"
+      >
+        Сохранить
+      </button>
     </div>
   </div>
 </template>

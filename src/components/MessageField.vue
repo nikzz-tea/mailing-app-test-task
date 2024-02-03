@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { inject, ref } from "vue";
 import { ChannelConfig } from "../config";
 import InputList from "./InputList.vue";
 
@@ -13,6 +13,16 @@ const isOpened = ref(false);
 const handleClick = () => {
   isOpened.value = !isOpened.value;
 };
+
+const finalResult = inject("finalResult") as any[];
+
+const handleChange = (e: Event) => {
+  const { name } = channelObject;
+  const obj = finalResult?.filter(
+    (item: any) => item.channel === name.toLowerCase(),
+  )[0];
+  obj.message = (e.target as HTMLTextAreaElement).value;
+};
 </script>
 
 <template>
@@ -21,8 +31,10 @@ const handleClick = () => {
       {{ index }}. {{ channelObject.name }}
     </h3>
     <textarea
+      placeholder="Текст сообщения"
       :maxlength="channelObject.messageLimit"
       class="w-full rounded-md border border-slate-500 p-3 text-base duration-200 focus:border-lime-700"
+      @change="handleChange"
     ></textarea>
     <div
       v-if="channelObject.defaultButtons"
